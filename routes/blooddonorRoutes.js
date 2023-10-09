@@ -1,34 +1,35 @@
 const express = require('express');
 const router = express.Router();
-const BloodBank = require('../models/bloodbank');
+const BloodDonor = require('../models/Donor'); // Replace 'Donor' with 'Blood'
 const District = require('../models/district'); 
 const City = require('../models/city'); 
 
+// Change '/bloodbanks' to '/donors'
 router.post('/', (req, res) => {
-  const { name, district, city, address, pincode, phone } = req.body;
-  const newBloodBank = new BloodBank({ name, district, city, address, pincode, phone });
+  const { name, district, city, bloodGroup, location, contact } = req.body;
+  const newBloodDonor = new BloodDonor({ name, district, city, bloodGroup, location, contact }); // Update field names
 
-  newBloodBank
+  newBloodDonor
     .save()
-    .then((bloodBank) => {
-      res.redirect('/bloodbanks');
+    .then((donor) => {
+      res.redirect('/donors'); // Change the redirection URL
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send('Error adding blood bank');
+      res.status(500).send('Error adding blood donor');
     });
 });
 
 router.get('/check', async (req, res) => {
   try {
-    const bloodBanks = await BloodBank.find();
+    const bloodDonors = await BloodDonor.find(); // Update the data fetching
     const districts = await District.find();
     const cities = await City.find();
 
-    res.render('donor', { bloodBanks, districts, cities });
+    res.render('donor', { bloodDonors, districts, cities }); // Update the variable name to 'bloodDonors'
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error retrieving blood banks');
+    res.status(500).send('Error retrieving blood donors');
   }
 });
 
