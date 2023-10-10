@@ -39,18 +39,13 @@
                    
 
                     <!-- City Select Menu -->
-                    <!-- <select class="form-select mb-3" id="citySelect" aria-label="Default select example">
-                        <option selected>Select City</option>
-                        <% for (const item of cities) { %>
-                            <option value="<%= item['city'] %>"><%= item %></option>
-                        <% } %>
-                    </select> -->
                     <select class="form-select mb-3" id="citySelect" aria-label="Default select example">
                         <option selected>Select City</option>
-                        <% for (const bank of bloodBanks) { %>
-                            <option value="<%= bank.city %>"><%= bank.city %></option>
+                        <% for (const item of cities) { %>
+                            <option value="<%= item %>"><%= item %></option>
                         <% } %>
                     </select>
+                    
 
                     <button type="button" class="btn btn-danger" onclick="filterBloodBanks()">Submit</button>
                 </form>

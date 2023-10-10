@@ -41,24 +41,12 @@
                     <!-- City Select Menu -->
                     <select class="form-select mb-3" id="citySelect" aria-label="Default select example">
                         <option selected>Select City</option>
-                        <% for (const donors of bloodDonors) { %>
-                            <option value="<%= donors.city %>"><%= donors.city %></option>
+                        <% for (const city of newcities) { %>
+                            <option value="<%= city %>"><%= city %></option>
                         <% } %>
                     </select> 
-                    <select class="form-select mb-3" id="citySelect" aria-label="Default select example">
-                        <option selected>Select City</option>
-                        <% for (const item of cities) { %>
-                            <option value="<%= item.city %>"><%= item.city %></option>
-                        <% } %>
-                    </select> 
-                    <select class="form-select mb-3" id="citySelect" aria-label="Default select example">
-                        <option selected>Select City</option>
-                        <% for (const item of cities) { %>
-                            <option value="<%= item['city'] %>"><%= item['city'] %></option>
-                        <% } %>
-                    </select>
 
-                    <button type="button" class="btn btn-danger">Submit</button>
+                    <button type="button" class="btn btn-danger" onclick="">Submit</button>
                 </form>
             </div>
         </div>
@@ -80,13 +68,13 @@
         <tbody id="bloodBankTableBody">
             <!-- Blood bank data will be dynamically populated here -->
             <% let serialNumber = 1; %>
-            <% for (const op of bloodDonors) { %>
+            <%  for(var i=0; i<name.length; i++){ %>
                 <tr>
                     <th scope="row"><%= serialNumber %></th>
-                    <td><%= op %></td>
-                    <td><%= op.Contact  %></td>
-                    <td><%= op.Location  %></td>
-                    <td><%= op["Blood Group"]  %></td>
+                    <td><%= name[i] %></td>
+                    <td><%= contact[i]  %></td>
+                    <td><%= location[i]  %></td>
+                    <td><%= blood[i]  %></td>
                     
                 </tr>
                 <% serialNumber++; %>

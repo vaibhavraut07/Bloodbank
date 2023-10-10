@@ -7,8 +7,14 @@ const City = require('../models/city');
 router.get('/op', async (req, res) => {
   try {
     const bloodBanks = await BloodBank.find();
-    const cities = await City.find();
+    const citys = await City.find();
 
+    var cities = []
+
+    for (const city of citys){
+      console.log( city.toJSON().city)
+      cities.push(city.toJSON().city)
+    }
     // console.log(cities)
 
     res.render('bloodbank', { bloodBanks, cities });
@@ -37,6 +43,8 @@ router.get('/filter', async (req, res) => {
     }
 
     const cities = await City.find();
+
+    
 
     res.render('bloodbank', { bloodBanks, cities });
   } catch (err) {
