@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const BloodBank = require('../models/bloodbank');
-const District = require('../models/district');
 const City = require('../models/city');
 
 // Update the existing GET route to render the blood bank page
 router.get('/op', async (req, res) => {
   try {
     const bloodBanks = await BloodBank.find();
-    const districts = await District.find();
     const cities = await City.find();
 
-    res.render('bloodbank', { bloodBanks, districts, cities });
+    // console.log(cities)
+
+    res.render('bloodbank', { bloodBanks, cities });
   } catch (err) {
     console.error(err);
     res.status(500).send('Error retrieving blood banks');
@@ -36,10 +36,9 @@ router.get('/filter', async (req, res) => {
       bloodBanks = await BloodBank.find({ district, city });
     }
 
-    const districts = await District.find();
     const cities = await City.find();
 
-    res.render('bloodbank', { bloodBanks, districts, cities });
+    res.render('bloodbank', { bloodBanks, cities });
   } catch (err) {
     console.error(err);
     res.status(500).send('Error filtering blood banks');

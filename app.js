@@ -31,7 +31,7 @@ const bloodBankRoutes = require('./routes/bloodbankRoutes');
 const bloodDonorRoutes = require('./routes/blooddonorRoutes');
 
 app.use('/bloodbanks', bloodBankRoutes);
-app.use('/Donors', bloodDonorRoutes);
+app.use('/donors', bloodDonorRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

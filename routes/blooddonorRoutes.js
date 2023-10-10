@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const BloodDonor = require('../models/Donor'); // Replace 'Donor' with 'Blood'
-const District = require('../models/district'); 
 const City = require('../models/city'); 
 
 // Change '/bloodbanks' to '/donors'
@@ -23,10 +22,11 @@ router.post('/', (req, res) => {
 router.get('/check', async (req, res) => {
   try {
     const bloodDonors = await BloodDonor.find(); // Update the data fetching
-    const districts = await District.find();
-    const cities = await City.find();
 
-    res.render('donor', { bloodDonors, districts, cities }); // Update the variable name to 'bloodDonors'
+    const cities = await City.find()
+
+
+    res.render('donorsPage', { bloodDonors, cities }); // Update the variable name to 'bloodDonors'
   } catch (err) {
     console.error(err);
     res.status(500).send('Error retrieving blood donors');

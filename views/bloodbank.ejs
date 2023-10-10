@@ -25,7 +25,7 @@
 <div class="container my-4">
     <nav class="nav nav-pills flex-column flex-sm-row border-danger border rounded-3">
         <a class="flex-sm-fill text-sm-center nav-link active fw-bold" aria-current="page" href="/bloodbanks/op">BLOOD BANK</a>
-        <a class="flex-sm-fill text-sm-center nav-link fw-bold" href="/Donors/check">BLOOD DONOR</a>
+        <a class="flex-sm-fill text-sm-center nav-link fw-bold" href="/donors/check">BLOOD DONOR</a>
     </nav>
 </div>
 <div class="modal position-static d-block" tabindex="-1">
@@ -36,19 +36,19 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <!-- District Select Menu -->
-                    <select class="form-select mb-4" id="districtSelect" aria-label="Default select example">
-                        <option selected>Select District</option>
-                        <% for (const op of bloodBanks) { %>
-                            <option value="<%= op.district %>"><%= op.district %></option>
-                        <% } %>
-                    </select>
+                   
 
                     <!-- City Select Menu -->
+                    <!-- <select class="form-select mb-3" id="citySelect" aria-label="Default select example">
+                        <option selected>Select City</option>
+                        <% for (const item of cities) { %>
+                            <option value="<%= item['city'] %>"><%= item %></option>
+                        <% } %>
+                    </select> -->
                     <select class="form-select mb-3" id="citySelect" aria-label="Default select example">
                         <option selected>Select City</option>
-                        <% for (const op of bloodBanks) { %>
-                            <option value="<%= op.city %>"><%= op.city %></option>
+                        <% for (const bank of bloodBanks) { %>
+                            <option value="<%= bank.city %>"><%= bank.city %></option>
                         <% } %>
                     </select>
 
