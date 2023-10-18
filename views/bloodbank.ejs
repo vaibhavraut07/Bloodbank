@@ -36,7 +36,7 @@
             </div>
             <div class="modal-body">
                 <form>
-                   
+
 
                     <!-- City Select Menu -->
                     <select class="form-select mb-3" id="citySelect" aria-label="Default select example">
@@ -45,9 +45,11 @@
                             <option value="<%= item %>"><%= item %></option>
                         <% } %>
                     </select>
-                    
+                
+
 
                     <button type="button" class="btn btn-danger" onclick="filterBloodBanks()">Submit</button>
+
                 </form>
             </div>
         </div>
@@ -111,7 +113,7 @@
                                 <td><%= op.district %></td>
                             </tr>
                             <tr>
-                                <th scope="row">City:</th>
+                                <th scope="row">City:</th> 
                                 <td><%= op.city %></td>
                             </tr>
                             <tr>
@@ -123,59 +125,33 @@
                                 <td><%= op.pincode %></td>
                             </tr>
                             <tr>
-                                <th scope="row">Phone no.:</th>
+                                <th scope="row">Phone no.:</th> 
                                 <td><%= op.phone %></td>
                             </tr>
                             <!-- You can add more details in a similar format -->
                         </tbody>
-                    </table>
-                </div>
+                    </table> 
+                </div> 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-<% } %>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+<% } %> 
 
-<script>
-    // Function to filter and render blood bank data based on district and city selections
+<script> 
+    // Define the filterBloodBanks function
     function filterBloodBanks() {
-        // Get selected district and city
-        const selectedDistrict = document.getElementById('districtSelect').value;
-        const selectedCity = document.getElementById('citySelect').value;
+    // Get selected city
+    const selectedCity = document.getElementById('citySelect').value;
+    const newUrl = `/bloodbanks/op/${selectedCity}`
+    history.pushState(null, null, newUrl);
+    window.location.reload(true);
 
-        // Filter the blood bank data based on selections
-        const filteredBloodBanks = bloodBanks.filter(op => {
-            return (
-                (selectedDistrict === 'Select District' || op.district === selectedDistrict) &&
-                (selectedCity === 'Select City' || op.city === selectedCity)
-            );
-        });
+}
 
-        // Clear the table body
-        const tableBody = document.getElementById('bloodBankTableBody');
-        tableBody.innerHTML = '';
-
-        // Render filtered blood bank data in the table
-        filteredBloodBanks.forEach((op, index) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <th scope="row">${index + 1}</th>
-                <td>${op.name}</td>
-                <td>${op.phone}</td>
-                <td>
-                    <a href="#"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal${op._id}"
-                        onclick="fetchMoreDetails('${op._id}')">
-                        click for more info
-                    </a>
-                </td>
-            `;
-            tableBody.appendChild(row);
-        });
-    }
+    
 
     // Updated JavaScript function to fetch and display more details
     function fetchMoreDetails(id) {
@@ -201,24 +177,24 @@
                                 <td>${data.district}</td>
                             </tr>
                             <tr>
-                                <th scope="row">City:</th>
+                                <th scope="row">City:</th> 
                                 <td>${data.city}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Address:</th>
-                                <td>${data.address}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Pincode:</th>
-                                <td>${data.pincode}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Phone no.:</th>
-                                <td>${data.phone}</td>
-                            </tr>
-                            <!-- Add more details as needed -->
-                        </tbody>
-                    </table>
+                                <th scope="row">Address:</th> 
+                                <td>${data.address}</td> 
+                            </tr> 
+                            <tr> 
+                                <th scope="row">Pincode:</th> 
+                                <td>${data.pincode}</td> 
+                            </tr> 
+                            <tr> 
+                                <th scope="row">Phone no.:</th> 
+                                <td>${data.phone}</td> 
+                            </tr> 
+                            <!-- Add more details as needed --> 
+                        </tbody> 
+                    </table> 
                 `;
             })
             .catch((error) => {

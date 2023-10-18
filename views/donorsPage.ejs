@@ -80,6 +80,17 @@
                 </tr>
                 <% serialNumber++; %>
             <% } %>
+            <script> 
+                // Define the filterBloodBanks function
+                function filterBloodDonors() {
+                // Get selected city
+                const selectedCity = document.getElementById('citySelect').value;
+                const newUrl = `/donors/check/${selectedCity}`
+                history.pushState(null, null, newUrl);
+                window.location.reload(true);
+            
+            }
+            </script>
         </tbody>
     </table>
 </div>

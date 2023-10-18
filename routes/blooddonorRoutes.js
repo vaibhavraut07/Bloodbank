@@ -19,9 +19,16 @@ router.post('/', (req, res) => {
     });
 });
 
-router.get('/check', async (req, res) => {
+router.get('/check/:city?', async (req, res) => {
   try {
-    const bloodDonors = await BloodDonor.find(); // Update the data fetching
+    let filter = {};  // Initialize an empty filter object
+
+  const city = req.params.city;
+  if (city) {
+    // If city parameter is not empty, apply the filter
+    filter = { city: city };
+  }
+    const bloodDonors = await BloodDonor.find(filter); // Update the data fetching
 
     const cities = await City.find()
 
